@@ -89,7 +89,7 @@ class AclController extends Controller
     {
         $this->validate($request, [
             'role_title' => 'required',
-//            'permission_title' => 'required'
+            'permission_title' => 'required'
         ]);
 
 //        $permissions = $request->get( 'permission_title', [] );

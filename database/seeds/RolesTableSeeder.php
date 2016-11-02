@@ -55,7 +55,7 @@ class RolesTableSeeder extends Seeder
             'id'            => 5,
             'role_title'          => 'User',
             'role_slug'  => 'user',
-            'description'   => 'A standard user , No administrative features.'
+            'description'   => 'A standard user, No administrative features.'
 
 
         ]);

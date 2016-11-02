@@ -71,39 +71,7 @@
 @stop
 
 
-{{--@section('scripts')--}}
 
-{{--<script type="text/javascript">--}}
-{{--/* <![CDATA[ */--}}
-{{--jQuery(function(){--}}
-{{--jQuery("#name").validate({--}}
-{{--expression: "if (VAL) return true; else return false;",--}}
-{{--message: "Please enter the Name field"--}}
-{{--});--}}
-
-{{--//        jQuery("#role_title").validate({--}}
-{{--//    expression: "if (VAL) return true; else return false;",--}}
-{{--//    message: "Please enter the RoleName field"--}}
-{{--//    });--}}
-{{--//        jQuery("#role").validate({--}}
-{{--//            expression: "if (VAL) return true; else return false;",--}}
-{{--//            message: "Please enter the Role"--}}
-{{--//        });--}}
-{{--jQuery("#image").validate({--}}
-{{--expression: "if (VAL) return true; else return false;",--}}
-{{--message: "Please enter the Image field"--}}
-{{--});--}}
-
-
-{{--jQuery("#email").validate({--}}
-{{--expression: "if (VAL.match(/^[^\\W][a-zA-Z0-9\\_\\-\\.]+([a-zA-Z0-9\\_\\-\\.]+)*\\@[a-zA-Z0-9_]+(\\.[a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,4}$/)) return true; else return false;",--}}
-{{--message: "Please enter a valid Email ID"--}}
-{{--});--}}
-{{--});--}}
-
-{{--</script>--}}
-
-{{--@stop--}}
 
 
 
