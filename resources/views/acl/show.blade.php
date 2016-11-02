@@ -1,5 +1,3 @@
-
-
 @extends('layouts.master')
 
 
@@ -34,22 +32,24 @@
 
                 {{-- access permission properties here.--}}
                 <td>
-                @foreach ($role->permissions as $permission)
+                    @foreach ($role->permissions as $permission)
 
 
-                    <li>{{ $permission->permission_title }}</li>
-                @endforeach
+                        <li>{{ $permission->permission_title }}</li>
+                    @endforeach
                 </td>
 
                 {{--@if(auth()->user()->can('can_edit'))--}}
-                <td>
 
-                    <a class="btn btn-small btn-info" href="{{url('acl/edit/'.$role->id)}}">Add/Edit this Role</a>
+                    <td>
+
+                        <a class="btn btn-small btn-info" href="{{url('acl/edit/'.$role->id)}}">Add/Edit this Role</a>
 
 
-                    <a class="btn btn-small btn-success" href="{{ url('acl/destroy/' . $role->id) }}">Delete this Role</a>
+                        <a class="btn btn-small btn-success" href="{{ url('acl/destroy/' . $role->id) }}">Delete this
+                            Role</a>
 
-                </td>
+                    </td>
 
                 {{--@endif--}}
             </tr>

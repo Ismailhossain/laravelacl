@@ -41,7 +41,10 @@ class Role extends Model
     }
 
 
-
+    public function hasPermissions(Permission $permission)
+    {
+        return $this->permissions->contains($permission);
+    }
 
 
 }

@@ -44,7 +44,7 @@ class AclController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,43 +55,44 @@ class AclController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show()
     {
         $roles = Role::all();
 
-        return View :: make ('acl.show')->with('roles',$roles);
+        return View:: make('acl.show')->with('roles', $roles);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $roles = Role::find($id);
         $permissions = Permission::all();
-        return view('acl.update', compact('roles','permissions'));
+        return view('acl.update', compact('roles', 'permissions'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
         $this->validate($request, [
             'role_title' => 'required',
-            'permission_title' => 'required'
+//            'permission_title' => 'required'
         ]);
 
+//        $permissions = $request->get( 'permission_title', [] );
 
         $role_id = Input::get('id');
         $roles = Role::find($role_id);
@@ -107,7 +108,7 @@ class AclController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

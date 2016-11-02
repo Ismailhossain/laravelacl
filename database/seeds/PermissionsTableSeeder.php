@@ -17,24 +17,30 @@ class PermissionsTableSeeder extends Seeder
         if (App::environment() === 'production') {
             exit('Lets stop');
         }
-//        DB::table('roles')->truncate();
+//        DB::table('permissions')->truncate();
         Permission::create([
-            'id'            => 1,
-            'permission_title'          => 'Can create',
-            'permission_slug'          => 'can_create',
-            'description'   => 'Permission to create user.'
+            'id' => 1,
+            'permission_title' => 'Can View',
+            'permission_slug' => 'can_view',
+            'description' => 'Permission to view only.'
         ]);
         Permission::create([
-            'id'            => 2,
-            'permission_title'          => 'Can edit',
-            'permission_slug'          => 'can_edit',
-            'description'   => 'Permission to edit user.'
+            'id' => 2,
+            'permission_title' => 'Can Create',
+            'permission_slug' => 'can_create',
+            'description' => 'Permission to create user.'
         ]);
         Permission::create([
-            'id'            => 3,
-            'permission_title'          => 'Can delete',
-            'permission_slug'          => 'can_delete',
-            'description'   => 'Permission to delete user.'
+            'id' => 3,
+            'permission_title' => 'Can Edit',
+            'permission_slug' => 'can_edit',
+            'description' => 'Permission to edit user.'
+        ]);
+        Permission::create([
+            'id' => 4,
+            'permission_title' => 'Can Delete',
+            'permission_slug' => 'can_delete',
+            'description' => 'Permission to delete user.'
         ]);
 
     }

@@ -56,7 +56,7 @@
         {{--For multiple roles--}}
 
 
-        @if(auth()->user()->can('can_create'))
+        {{--@if(auth()->user()->can('can_create'))--}}
 
 
             <div class="form-group">
@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-        @endif
+        {{--@endif--}}
 
 
         {{-- End oF multiple roles--}}

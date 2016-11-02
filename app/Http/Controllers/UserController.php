@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Role;
 use App\RoleUser;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+
 //use Illuminate\Contracts\Pagination;
 
 class UserController extends Controller
@@ -39,21 +41,21 @@ class UserController extends Controller
         $roles = Role::all();
         $permissions = Permission::all();
 
-        return view('user.add', compact('roles','permissions'));
+        return view('user.add', compact('roles', 'permissions'));
 
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'             => 'required',                        // just a normal required validation
-            'email'            => 'required|email|unique:users',     // required and must be unique in the table
+            'name' => 'required',                        // just a normal required validation
+            'email' => 'required|email|unique:users',     // required and must be unique in the table
             'role_title' => 'required',
             'image' => 'required',
             'password' => 'required|min:6|alpha_dash',
@@ -61,27 +63,26 @@ class UserController extends Controller
         ]);
 
 
-        $user = new User ;
-        $user->name = $request->name ;
-        $user->email = $request->email ;
-        $user->password = Hash::make($request->password) ;
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
 
         //for image uploading starts
 
-        $imagefile = $request->image ;
-        $imagefilename = str_random(8) . time() . '-'. $imagefile->getClientOriginalName();
-        $imagefile->move(public_path().'/images/' , $imagefilename);
-        $user->image = '/images/'.$imagefilename ;
+        $imagefile = $request->image;
+        $imagefilename = str_random(8) . time() . '-' . $imagefile->getClientOriginalName();
+        $imagefile->move(public_path() . '/images/', $imagefilename);
+        $user->image = '/images/' . $imagefilename;
 
         //image uploading ends
 
-        $user->save() ;
+        $user->save();
 
 //Get the user ID ceated just now
         $new_user = $user->id;
 
-        foreach($request->input('role_title') as $roles)
-        {
+        foreach ($request->input('role_title') as $roles) {
             $roleuser = new RoleUser;
             $roleuser->role_id = $roles;
             $roleuser->user_id = $new_user;
@@ -99,7 +100,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show()
@@ -114,7 +115,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -124,22 +125,22 @@ class UserController extends Controller
         $users = User::find($id);
         $roles = Role::all();
 
-        return view('user.update', compact('users','roles'));
+        return view('user.update', compact('users', 'roles'));
 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
         $this->validate($request, [
-            'name'             => 'required',                        // just a normal required validation
-            'email'            => 'required|email',     // required and must be unique in the table
+            'name' => 'required',                        // just a normal required validation
+            'email' => 'required|email',     // required and must be unique in the table
             'role_title' => 'required',
             'image' => 'required',
         ]);
@@ -147,22 +148,22 @@ class UserController extends Controller
 
         $user_id = Input::get('id');
         $user = User::find($user_id);
-        $user->name = $request->name ;
-        $user->email = $request->email ;
+        $user->name = $request->name;
+        $user->email = $request->email;
 
         //for image uploading starts
 
-        $imagefile = $request->image ;
-        $imagefilename = str_random(8) . time() . '-'. $imagefile->getClientOriginalName();
-        $imagefile->move(public_path().'/images/' , $imagefilename);
-        $user->image = '/images/'.$imagefilename ;
+        $imagefile = $request->image;
+        $imagefilename = str_random(8) . time() . '-' . $imagefile->getClientOriginalName();
+        $imagefile->move(public_path() . '/images/', $imagefilename);
+        $user->image = '/images/' . $imagefilename;
 
         //image uploading ends
 
 
         $user->roles()->sync(Input::get('role_title'));
 
-        $user->save() ;
+        $user->save();
 
         Session::flash('message', 'Successfully created User!');
 
@@ -172,7 +173,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -181,7 +182,7 @@ class UserController extends Controller
         $del->delete();
 
 
-        if($del){
+        if ($del) {
             Session::flash('message', 'Successfully deleted the user!');
             return Redirect::to('user/show');
         }
